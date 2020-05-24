@@ -18,9 +18,12 @@ const servicePlugins = requireModule
   .keys()
   .map(modulePath => requireModule(modulePath).default)
 
+import createLogger from 'vuex/dist/logger'
+
 export default new Vuex.Store({
   state: {},
   mutations: {},
   actions: {},
-  plugins: [...servicePlugins, auth]
+  plugins: [createLogger(), ...servicePlugins, auth]
+  // plugins: [...servicePlugins, auth]
 })

@@ -6,14 +6,17 @@
       </div>
     </div>
     <div class="row">
-      <div
-        class="col-12 col-6-tablet push-3-tablet col-4-desktop push-4-desktop"
-      >
-        <div v-if="error" class="error">
+      <div class="col-12 col-6-tablet push-3-tablet col-4-desktop push-4-desktop">
+        <div
+          v-if="error"
+          class="error"
+        >
           {{ error.message }}
-          <a class="close" href="javascript://" @click.prevent="dismissError"
-            >dismiss</a
-          >
+          <a
+            class="close"
+            href="javascript://"
+            @click.prevent="dismissError"
+          >dismiss</a>
         </div>
 
         <form
@@ -41,7 +44,10 @@
             />
           </fieldset>
 
-          <button type="submit" class="button button-primary block login">
+          <button
+            type="submit"
+            class="button button-primary block login"
+          >
             Login
           </button>
 
@@ -49,8 +55,7 @@
             as="button"
             :to="{ name: 'Home' }"
             class="button button-secondary block"
-            >Back</router-link
-          >
+          >Back</router-link>
         </form>
       </div>
     </div>
@@ -62,18 +67,18 @@ import { ref } from '@vue/composition-api'
 
 export default {
   name: 'Login',
-  setup(props, context) {
+  setup (props, context) {
     const { $store } = context.root
 
     const email = ref('')
     const password = ref('')
 
     const error = ref(null)
-    function dismissError() {
+    function dismissError () {
       error.value = null
     }
 
-    function onSubmit(email, password) {
+    function onSubmit (email, password) {
       $store
         .dispatch('auth/authenticate', { strategy: 'local', email, password })
         // Just use the returned error instead of mapping it from the store.
